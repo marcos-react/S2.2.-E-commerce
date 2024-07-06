@@ -76,6 +76,31 @@ var total = 0;
 
 // Exercise 1
 function buy(id) {
+ 
+
+let item = products.find((element) => element.id == id);
+
+let itemCart = cart.find((element) => element.id == id);
+
+if (itemCart == undefined) {
+
+    let insertProduct = { ...item, quantity: 1 };
+    cart.push(insertProduct);
+
+  } else {
+
+    cart.map((item) => {
+      
+      if (item.id == id) {
+        
+        item.quantity = item.quantity + 1;
+      
+     }
+    });
+
+  }
+
+
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array
 }
