@@ -108,6 +108,12 @@ if (itemCart == undefined) {
 // Exercise 2
 function cleanCart() {
 
+    while(cart.length > 0){ //while there is item then delete items in cart
+
+        cart.pop();
+
+    }
+
 }
 
 // Exercise 3
