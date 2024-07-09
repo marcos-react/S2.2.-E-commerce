@@ -126,8 +126,34 @@ function calculateTotal() {
 
 // Exercise 4
 function applyPromotionsCart() {
-    // Apply promotions to each item in the array "cart"
+    // Apply promotions
+
+    // check if offer property exist
+    const reduceProduct = cart.filter((item) => item.hasOwnProperty("offer"));
+    // if quantity is bigger or equal to number then calculated the price.
+    reduceProduct.map((item) => {
+        if(item.quantity >= item.offer.number){
+            
+            item.subtotalWithDiscount = item.price - (item.price * item.offer.percent)/100;
+            //alert(item.subtotalWithDiscount);
+        }
+    });
+
 }
+
+// This is a test to see if applyPromotionsCart function works.
+// Wait DOM is loaded
+//document.addEventListener('DOMContentLoaded', function() {
+    // Button element discount
+//    const button = document.getElementById('discount');
+    
+    // Verify button with the function applyPromotionsCart
+//    if (button) {
+//        button.onclick = applyPromotionsCart;
+//    } else {
+//        console.error('It cannot find the id "myButton"');
+//    }
+//});
 
 // Exercise 5
 function printCart() {
