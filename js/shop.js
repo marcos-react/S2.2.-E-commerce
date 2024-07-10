@@ -121,6 +121,8 @@ function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
 
     const totalPrice = cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
+
+    return totalPrice;
     
 }
 
@@ -158,6 +160,64 @@ function applyPromotionsCart() {
 // Exercise 5
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+
+        let table = document.getElementById('cart_list');
+        table.innerHTML = "";
+
+        let sumPrice = document.getElementById('total_price');
+        sumPrice.innerHTML = "";
+
+        //let sum;
+
+        applyPromotionsCart();
+
+        cart.forEach(element => {
+            let row = document.createElement("tr");
+
+            let name_cell = document.createElement("th");
+
+            name_cell.textContent = element.name;
+            
+            row.appendChild(name_cell);
+
+            let specialPrice = 0;
+
+            if(element.hasOwnProperty("subtotalWithDiscount")){
+
+                specialPrice = element.subtotalWithDiscount;
+
+            } else{
+
+                specialPrice = element.price;
+            }
+
+            let priceRow = document.createElement("td");
+
+            priceRow.textContent = specialPrice;
+
+            row.appendChild(priceRow);
+
+            let quantityRow = document.createElement("td");
+
+            quantityRow.textContent = element.quantity;
+
+            row.appendChild(quantityRow);
+
+            let totalRow = document.createElement("td");
+
+            totalRow.textContent = specialPrice * element.quantity; // total price item with discount and quantity
+
+            //sum = sum + parseFloat(totalRow.textContent); // calculate total with discount
+
+            row.appendChild(totalRow);
+
+
+            table.appendChild(row);
+        });
+
+        //sumPrice.innerHTML = sum;
+        sumPrice.innerHTML = calculateTotal(); // no discount
+
 }
 
 
